@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pgl-rep"
+version = "0.1.0"
+description = "Persistent Gauss-Linking Laplacian molecular representations"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "scipy>=1.10", "torch>=2.0", "scikit-learn>=1.2", "rdkit>=2023.3"]
+classifiers = ["Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Topic :: Scientific/Engineering :: Chemistry"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pytest-cov>=4", "build>=1", "twine>=4"]
+viz = ["matplotlib>=3.7"]
+xgb = ["xgboost>=2.0"]
+
+[project.scripts]
+pglrep = "pglrep.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: requires a real molecular fixture"]
