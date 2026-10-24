@@ -3,6 +3,11 @@
 The readout uses one predeclared hyper-parameter set. The values were fixed
 before the benchmark runs and are not tuned per dataset or per split; every
 dataset is fitted with the same settings and three fixed seeds.
+
+A readout can be bound to a feature schema (see :mod:`pgl.schema`). The schema
+hash is written next to the model and checked again when the model is loaded
+with the same schema, so a checkpoint cannot be silently applied to a different
+feature layout.
 """
 
 from __future__ import annotations
@@ -13,6 +18,7 @@ from pathlib import Path
 import numpy as np
 
 from .metrics import all_metrics
+from .schema import schema_sha256
 
 XGB_PRESET = {
     "n_estimators": 708,
@@ -43,6 +49,9 @@ class XGBReadout:
     hyperparameters:
         Optional overrides of :data:`XGB_PRESET`. Only intended for ablation
         runs; the released benchmark numbers use the preset unchanged.
+    schema:
+        Optional ordered feature schema. When given, the schema hash is stored
+        with the checkpoint and the feature width is checked against the schema.
     """
 
     def __init__(
@@ -50,6 +59,7 @@ class XGBReadout:
         seed: int = DEFAULT_SEED,
         n_threads: int = 8,
         hyperparameters: dict | None = None,
+        schema: dict | None = None,
     ) -> None:
         self.seed = int(seed)
         self.n_threads = int(n_threads)
@@ -60,6 +70,8 @@ class XGBReadout:
         self.feature_dim: int | None = None
         self.n_train: int | None = None
         self.training_metrics: dict | None = None
+        self.schema_total: int | None = int(schema["total"]) if schema is not None else None
+        self.schema_sha256: str | None = schema_sha256(schema) if schema is not None else None
 
     def fit(self, features, labels) -> XGBReadout:
         """Fit the readout on a feature matrix and pK labels."""
@@ -69,6 +81,11 @@ class XGBReadout:
         labels = np.asarray(labels, dtype=np.float64).reshape(-1)
         if features.ndim != 2:
             raise ValueError(f"features must be 2-D, got {features.shape}")
+        if self.schema_total is not None and features.shape[1] != self.schema_total:
+            raise ValueError(
+                f"feature schema has {self.schema_total} columns, "
+                f"features have {features.shape[1]}"
+            )
         if features.shape[0] != labels.size:
             raise ValueError(f"{features.shape[0]} feature rows for {labels.size} labels")
         if not np.all(np.isfinite(labels)):
@@ -102,6 +119,8 @@ class XGBReadout:
             "seed": self.seed,
             "n_threads": self.n_threads,
             "feature_dim": self.feature_dim,
+            "feature_schema_sha256": self.schema_sha256,
+            "feature_schema_total": self.schema_total,
             "n_train": self.n_train,
             "hyperparameters": self.hyperparameters,
             "training_metrics": self.training_metrics,
@@ -120,8 +139,13 @@ class XGBReadout:
         return directory
 
     @classmethod
-    def load(cls, directory: str | Path) -> XGBReadout:
-        """Load a readout written by :meth:`save`."""
+    def load(cls, directory: str | Path, schema: dict | None = None) -> XGBReadout:
+        """Load a readout written by :meth:`save`.
+
+        When ``schema`` is given, the schema hash recorded with the checkpoint
+        must match it (checkpoints written without a schema are checked on the
+        feature width only).
+        """
         import xgboost as xgb
 
         directory = Path(directory)
@@ -140,6 +164,19 @@ class XGBReadout:
         readout.feature_dim = config.get("feature_dim")
         readout.n_train = config.get("n_train")
         readout.training_metrics = config.get("training_metrics")
+        readout.schema_sha256 = config.get("feature_schema_sha256")
+        readout.schema_total = config.get("feature_schema_total")
+        if schema is not None:
+            expected = schema_sha256(schema)
+            if readout.feature_dim is not None and int(schema["total"]) != int(readout.feature_dim):
+                raise ValueError(
+                    f"checkpoint expects {readout.feature_dim} features, "
+                    f"schema has {schema['total']}"
+                )
+            if readout.schema_sha256 is not None and readout.schema_sha256 != expected:
+                raise ValueError("checkpoint feature schema does not match the supplied schema")
+            readout.schema_sha256 = expected
+            readout.schema_total = int(schema["total"])
         return readout
 
 

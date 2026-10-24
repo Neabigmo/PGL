@@ -98,18 +98,36 @@ path = release_file(RELEASE["results"]["predictions"]["casf2016_seed20261022"]["
 `release_file` resolves a path recorded in `src/pgl/release.json` against the source
 checkout; it raises for an installed wheel, where the released data files are absent.
 
+## Feature schema
+
+```python
+from pgl.schema import build_schema, load_schema, ordered_feature_names, schema_sha256
+
+ordered_feature_names()   # 1,279 names, contact tokens then Uni-Mol then SaProt
+schema = load_schema("release/schema.json")
+schema_sha256(schema)     # hash of the ordered names and block layout
+build_schema()            # same schema generated from the code
+```
+
+`XGBReadout(schema=schema)` records the schema hash in `config.json`;
+`XGBReadout.load(directory, schema=schema)` raises when the checkpoint was fitted
+with a different schema. Checkpoints written without a schema are checked on the
+feature width only.
+
 ## Command line
 
 ```text
 pgl features --protein P --ligand L --out tokens.npz [--id ID]
 pgl features --manifest manifest.csv --out tokens.npz
 pgl context  --tokens tokens.npz [--unimol U.npz] [--saprot S.npz] --out features.npz [--present-flags]
-pgl train    --features F.npz --labels L.csv --out DIR [--seed 20261022] [--threads 8]
-pgl predict  --model DIR --features F.npz --out predictions.csv
+pgl train    --features F.npz --labels L.csv --out DIR [--train-manifest ids.csv]
+             [--schema schema.json] [--seed 20261022] [--threads 8]
+pgl predict  --model DIR --features F.npz --out predictions.csv [--schema schema.json]
 pgl info
 ```
 
 `pgl features` accepts single-complex mode or a manifest with columns
 `sample_id, protein_path, ligand_path`. Samples without a contact in the central
 window are reported and skipped. `pgl train` and `pgl predict` accept either a
-tokens archive or a features archive.
+tokens archive or a features archive. `pgl train --train-manifest` restricts
+training to the listed rows and fails when an id is missing from the archive.

@@ -28,7 +28,7 @@ def pearson(y_true, y_pred) -> float:
 def spearman(y_true, y_pred) -> float:
     y_true = np.asarray(y_true, dtype=np.float64)
     y_pred = np.asarray(y_pred, dtype=np.float64)
-    if y_true.size < 3:
+    if y_true.size < 3 or y_true.std() < 1e-12 or y_pred.std() < 1e-12:
         return float("nan")
     from scipy.stats import spearmanr
 

@@ -13,7 +13,8 @@ context embeddings attached the readout input grows to 1,279 columns.
 
 `pgl.features.feature_names()` returns the 287 names in this order;
 `pgl.features.BLOCK_SLICES` holds the offsets. Values are stored as `float32`
-after computation in float64. The same layout is recorded machine-readably in
+after computation in float64. The complete 1,279-column layout is recorded in
+`release/schema.json` (ordered names and a SHA-256) and summarised in
 `src/pgl/release.json` under `feature_schema`; the tests compare the two.
 
 ## 1. Chemistry channels (15, columns 0–14)
@@ -97,7 +98,9 @@ Code: `pgl.contacts.contact_features`, `pgl.contacts.feature_names`.
 ## 4. Frozen context (optional, columns 287–1278)
 
 Two frozen encoders provide context. This repository does not run them; it
-defines the file interface and the assembly:
+defines the file interface and the assembly. Input preparation, chain selection,
+pooling, truncation, Foldseek/3Di caching and encoder failures are handled by the
+external generation scripts, not here:
 
 | block | columns | file | width |
 |---|---|---|---|

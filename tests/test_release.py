@@ -45,7 +45,14 @@ def _read_csv(path):
 
 
 def _digest(path) -> str:
+    """SHA-256 of the file bytes (the table/prediction hash definition)."""
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _ids_digest(path) -> str:
+    """SHA-256 of the sample_id payload (the split hash definition)."""
+    ids = [row["sample_id"] for row in _read_csv(path)]
+    return hashlib.sha256("\n".join(ids).encode("utf-8")).hexdigest()
 
 
 def test_release_record_matches_code():
@@ -107,12 +114,34 @@ def test_sample_lists_match_the_release_record():
     for name, entry in splits.items():
         path = root / entry["path"]
         assert path.is_file(), f"{name}: missing {entry['path']}"
+        # released CSV files are LF-only so the hashes are platform independent
+        assert b"\r\n" not in path.read_bytes(), f"{name}: CRLF line endings"
         rows = _read_csv(path)
         ids = [row["sample_id"] for row in rows]
         assert len(ids) == entry["n"], f"{name}: row count changed"
         assert len(ids) == len(set(ids)), f"{name}: duplicated sample id"
         assert all(sample_id.strip() for sample_id in ids), f"{name}: empty sample id"
-        assert _digest(path) == entry["sha256"], f"{name}: split hash changed"
+        assert _ids_digest(path) == entry["sha256"], f"{name}: sample-id hash changed"
+        assert _digest(path) == entry["sha256_file"], f"{name}: file hash changed"
+
+
+def test_context_complete_training_split():
+    """The 3758-row training list preserves the released parity order and hash."""
+    root = _root()
+    entry = RELEASE["sample_lists"]["splits"]["pdbbind2016_train3758"]
+    path = root / entry["path"]
+    ids = [row["sample_id"] for row in _read_csv(path)]
+    assert entry["n"] == len(ids) == 3758
+    assert entry["sha256"] == "6a42c6f4d238da1b53e4eb5de14a4ad081b6662fcaf209ea03abe5b735b2734a"
+    assert _ids_digest(path) == entry["sha256"]
+    assert _digest(path) == entry["sha256_file"]
+    assert ids[0] == "10gs" and ids[-1] == "966c"
+    dev_ids = {
+        row["sample_id"]
+        for row in _read_csv(root / RELEASE["sample_lists"]["splits"]["pdbbind2016_dev"]["path"])
+    }
+    assert set(ids).issubset(dev_ids)
+    assert len(dev_ids) - len(ids) == 8
 
 
 def test_released_ids_are_unique_across_files():
@@ -200,11 +229,39 @@ def test_benchmark_values_match_tables(benchmark, table):
 
 def test_released_files_are_hashed():
     root = _root()
+    for entry in RELEASE["sample_lists"]["splits"].values():
+        assert _digest(root / entry["path"]) == entry["sha256_file"]
     for group in ("tables", "figure_source"):
         for entry in RELEASE["results"][group].values():
             assert _digest(root / entry["path"]) == entry["sha256"]
     for entry in RELEASE["results"]["predictions"].values():
         assert _digest(root / entry["path"]) == entry["sha256"]
+
+
+def test_released_csv_files_are_lf_only():
+    root = _root()
+    offenders = [
+        path.relative_to(root).as_posix()
+        for path in (root / "release").rglob("*.csv")
+        if b"\r\n" in path.read_bytes()
+    ]
+    assert not offenders, f"CRLF line endings in released data: {offenders[:3]}"
+    gitattributes = (root / ".gitattributes").read_text(encoding="utf-8")
+    assert "eol=lf" in gitattributes
+
+
+def test_feature_schema_file_matches_code():
+    root = _root()
+    from pgl.schema import build_schema, ordered_feature_names, schema_sha256
+
+    schema = build_schema()
+    path = root / RELEASE["feature_schema"]["schema_file"]
+    released = json.loads(path.read_text(encoding="utf-8"))
+    assert released["total"] == 1279
+    assert released["sha256"] == schema["sha256"] == schema_sha256()
+    assert released["blocks"] == schema["blocks"]
+    assert len(ordered_feature_names()) == 1279
+    assert RELEASE["feature_schema"]["schema_sha256"] == released["sha256"]
 
 
 def test_readme_states_the_released_model():

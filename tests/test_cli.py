@@ -123,8 +123,73 @@ def test_train_requires_labels_for_every_sample(toy_tokens, tmp_path, capsys):
         )
 
 
+def test_train_with_id_list(toy_tokens, toy_labels_map, tmp_path, capsys):
+    ids, tokens = toy_tokens
+    features = tmp_path / "features.npz"
+    np.savez(features, ids=ids, tokens=tokens)
+    labels = tmp_path / "labels.csv"
+    labels.write_text(
+        "sample_id,label\n"
+        + "\n".join(f"{sample_id},{toy_labels_map[sample_id]}" for sample_id in ids)
+        + "\n",
+        encoding="utf-8",
+    )
+    keep = ids[:10]
+    id_list = tmp_path / "ids.csv"
+    id_list.write_text("sample_id\n" + "\n".join(keep) + "\n", encoding="utf-8")
+    model = tmp_path / "model"
+    assert (
+        main(
+            [
+                "train",
+                "--features",
+                str(features),
+                "--labels",
+                str(labels),
+                "--train-manifest",
+                str(id_list),
+                "--out",
+                str(model),
+                "--threads",
+                "1",
+            ]
+        )
+        == 0
+    )
+    config = json.loads((model / "config.json").read_text(encoding="utf-8"))
+    assert config["n_train"] == 10
+    assert config["feature_dim"] == FEATURE_DIM
+
+
+def test_train_with_id_list_rejects_unknown_ids(toy_tokens, toy_labels_map, tmp_path):
+    ids, tokens = toy_tokens
+    features = tmp_path / "features.npz"
+    np.savez(features, ids=ids, tokens=tokens)
+    labels = tmp_path / "labels.csv"
+    labels.write_text(
+        "sample_id,label\n" + f"{ids[0]},{toy_labels_map[ids[0]]}\n", encoding="utf-8"
+    )
+    id_list = tmp_path / "ids.csv"
+    id_list.write_text("sample_id\ntoy01\nnot-a-sample\n", encoding="utf-8")
+    with pytest.raises(SystemExit):
+        main(
+            [
+                "train",
+                "--features",
+                str(features),
+                "--labels",
+                str(labels),
+                "--train-manifest",
+                str(id_list),
+                "--out",
+                str(tmp_path / "model"),
+            ]
+        )
+
+
 def test_info_prints_feature_layout(capsys):
     assert main(["info"]) == 0
     printed = json.loads(capsys.readouterr().out)
     assert printed["contact_tokens"] == FEATURE_DIM
     assert printed["features_with_context"] == 1279
+    assert len(printed["feature_schema_sha256"]) == 64

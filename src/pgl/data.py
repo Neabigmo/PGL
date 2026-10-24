@@ -109,6 +109,27 @@ def load_labels(path: str | Path) -> dict[str, float]:
     return labels
 
 
+def load_id_list(path: str | Path) -> list[str]:
+    """Read an ordered ``sample_id`` list from a CSV file.
+
+    The file may contain a single ``sample_id`` column or a full manifest; the
+    first column named ``sample_id``/``id`` is used and the row order is kept.
+    """
+    path = Path(path)
+    with open(path, encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        fields = reader.fieldnames or []
+        field = _first_present(fields, ("sample_id", "id"))
+        if field is None:
+            raise ValueError(f"{path}: expected a sample_id column; found {fields}")
+        ids = [str(row[field]).strip() for row in reader]
+    if not ids or any(sample_id == "" for sample_id in ids):
+        raise ValueError(f"{path}: empty sample_id in the id list")
+    if len(set(ids)) != len(ids):
+        raise ValueError(f"{path}: duplicated sample_id in the id list")
+    return ids
+
+
 def _first_present(fields, candidates) -> str | None:
     for name in candidates:
         if name in fields:
@@ -118,6 +139,7 @@ def _first_present(fields, candidates) -> str | None:
 
 __all__ = [
     "load_features",
+    "load_id_list",
     "load_labels",
     "load_tokens",
     "save_features",

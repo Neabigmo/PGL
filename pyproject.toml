@@ -30,11 +30,13 @@ classifiers = [
 dependencies = [
     "numpy>=1.24",
     "scipy>=1.10",
+    "scikit-learn>=1.2",
     "rdkit>=2023.3",
     "xgboost>=2.0",
 ]
 
 [project.optional-dependencies]
+test = ["pytest>=7"]
 dev = ["pytest>=7", "ruff>=0.5", "build>=1"]
 
 [project.scripts]

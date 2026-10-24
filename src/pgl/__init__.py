@@ -12,6 +12,12 @@ from .features import FEATURE_DIM, ContactTokens, contact_features, feature_name
 from .operator import Complex, build_windows, parse_complex
 from .readout import XGB_PRESET, XGBReadout
 from .release import FEATURE_BLOCKS, MODEL_ID, RELEASE, RELEASE_VERSION, load_release
+from .schema import (
+    load_schema,
+    ordered_feature_names,
+    schema_sha256,
+    validate_schema,
+)
 
 __all__ = [
     "CONTEXT_DIMS",
@@ -31,6 +37,10 @@ __all__ = [
     "contact_features",
     "feature_names",
     "load_release",
+    "load_schema",
+    "ordered_feature_names",
     "parse_complex",
+    "schema_sha256",
+    "validate_schema",
     "__version__",
 ]

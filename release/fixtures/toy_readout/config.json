@@ -1,0 +1,28 @@
+{
+  "feature_dim": 1279,
+  "feature_schema_sha256": "e0f07a4e69abef4d14ad1590e0cb291b54fb8ad93f1533c8073d43a95ebce80e",
+  "feature_schema_total": 1279,
+  "hyperparameters": {
+    "colsample_bytree": 0.9008575050404631,
+    "learning_rate": 0.1,
+    "max_depth": 3,
+    "min_child_weight": 1,
+    "n_estimators": 32,
+    "objective": "reg:squarederror",
+    "reg_alpha": 0.28096217359611636,
+    "reg_lambda": 7.479441772354108,
+    "subsample": 0.7406949320228273,
+    "tree_method": "hist"
+  },
+  "model": "xgboost",
+  "n_threads": 1,
+  "n_train": 60,
+  "seed": 20261024,
+  "training_metrics": {
+    "mae": 0.17013344871520994,
+    "n": 60,
+    "pearson": 0.984461673391338,
+    "rmse": 0.23672490639027324,
+    "spearman": 0.9832731314253961
+  }
+}

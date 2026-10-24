@@ -11,9 +11,10 @@ import numpy as np
 
 from . import __version__
 from .context import CONTEXT_DIMS, ContextEmbedding, build_feature_matrix
-from .data import load_features, load_labels, load_tokens, save_features, save_tokens
+from .data import load_features, load_id_list, load_labels, load_tokens, save_features, save_tokens
 from .features import FEATURE_DIM, contact_features
 from .readout import DEFAULT_SEED, XGB_PRESET, XGBReadout
+from .schema import load_schema
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -52,6 +53,11 @@ def main(argv: list[str] | None = None) -> int:
     train = subparsers.add_parser("train", help="fit the XGBoost readout")
     train.add_argument("--features", required=True, help="features archive (.npz)")
     train.add_argument("--labels", required=True, help="CSV with sample_id and label")
+    train.add_argument(
+        "--train-manifest",
+        help="CSV with a sample_id column; train only on these rows",
+    )
+    train.add_argument("--schema", help="feature schema JSON to bind to the checkpoint")
     train.add_argument("--out", required=True, help="output model directory")
     train.add_argument("--seed", type=int, default=DEFAULT_SEED)
     train.add_argument("--threads", type=int, default=8)
@@ -59,6 +65,7 @@ def main(argv: list[str] | None = None) -> int:
     predict = subparsers.add_parser("predict", help="predict pK with a fitted readout")
     predict.add_argument("--model", required=True, help="model directory")
     predict.add_argument("--features", required=True, help="features archive (.npz)")
+    predict.add_argument("--schema", help="feature schema JSON to check the checkpoint against")
     predict.add_argument("--out", required=True, help="output predictions CSV")
 
     subparsers.add_parser("info", help="print feature layout and default settings")
@@ -146,11 +153,24 @@ def _context(args: argparse.Namespace) -> int:
 def _train(args: argparse.Namespace) -> int:
     ids, features = load_features(args.features)
     labels = load_labels(args.labels)
+    if args.train_manifest:
+        wanted = load_id_list(args.train_manifest)
+        index = {sample_id: row for row, sample_id in enumerate(ids)}
+        missing_ids = [sample_id for sample_id in wanted if sample_id not in index]
+        if missing_ids:
+            raise SystemExit(
+                f"train: {len(missing_ids)} ids from --train-manifest are absent from the "
+                f"feature archive (first: {missing_ids[:3]})"
+            )
+        rows = np.asarray([index[sample_id] for sample_id in wanted], dtype=int)
+        ids = [ids[row] for row in rows]
+        features = features[rows]
     missing = [sample_id for sample_id in ids if sample_id not in labels]
     if missing:
         raise SystemExit(f"train: {len(missing)} samples have no label (first: {missing[:3]})")
     labels_vector = np.asarray([labels[sample_id] for sample_id in ids], dtype=np.float64)
-    readout = XGBReadout(seed=args.seed, n_threads=args.threads)
+    schema = load_schema(args.schema) if args.schema else None
+    readout = XGBReadout(seed=args.seed, n_threads=args.threads, schema=schema)
     readout.fit(features, labels_vector)
     readout.save(args.out)
     print(json.dumps({"out": str(args.out), **readout.config()}, indent=2))
@@ -158,7 +178,8 @@ def _train(args: argparse.Namespace) -> int:
 
 
 def _predict(args: argparse.Namespace) -> int:
-    readout = XGBReadout.load(args.model)
+    schema = load_schema(args.schema) if args.schema else None
+    readout = XGBReadout.load(args.model, schema=schema)
     ids, features = load_features(args.features)
     predictions = readout.predict(features)
     out = Path(args.out)
@@ -184,6 +205,7 @@ def _predict(args: argparse.Namespace) -> int:
 
 def _info() -> int:
     from .release import MODEL_ID, RELEASE, RELEASE_VERSION
+    from .schema import schema_sha256
 
     print(
         json.dumps(
@@ -195,6 +217,7 @@ def _info() -> int:
                 "contact_tokens": FEATURE_DIM,
                 "context": CONTEXT_DIMS,
                 "features_with_context": FEATURE_DIM + sum(CONTEXT_DIMS.values()),
+                "feature_schema_sha256": schema_sha256(),
                 "readout": "xgboost",
                 "seeds": RELEASE["model"]["seeds"],
                 "hyperparameters": XGB_PRESET,

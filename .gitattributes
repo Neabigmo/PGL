@@ -1,0 +1,21 @@
+# Keep line endings in the repository and on checkout at LF so that the
+# SHA-256 values recorded in release.json and src/pgl/release.json describe the
+# same bytes on every platform.
+* text=auto eol=lf
+
+*.pdb text eol=lf
+*.sdf text eol=lf
+*.csv text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.cff text eol=lf
+*.yml text eol=lf
+
+*.png binary
+*.jpg binary
+*.pdf binary
+*.zip binary
+*.npz binary
+*.npy binary

@@ -70,55 +70,74 @@
         "producer": "external: SaProt protein embedding"
       }
     ],
-    "missing_value_policy": "NaN for absent context, no imputation, no presence columns"
+    "missing_value_policy": "NaN for absent context, no imputation, no presence columns",
+    "schema_file": "release/schema.json",
+    "schema_sha256": "e0f07a4e69abef4d14ad1590e0cb291b54fb8ad93f1533c8073d43a95ebce80e",
+    "hash_definition": "sha256 of the schema object without its 'sha256' field, serialised as canonical JSON (sort_keys=True, separators=(',', ':'))"
   },
   "sample_lists": {
-    "hash_definition": "sha256 of the split CSV file bytes (header sample_id, ids sorted)",
+    "hash_definition": "sha256 = SHA-256 of the sample_id payload (UTF-8, one id per line in file order, no trailing newline); sha256_file = SHA-256 of the LF-normalised CSV file bytes (header included)",
     "splits": {
       "pdbbind2016_dev": {
         "path": "release/splits/pdbbind2016_dev.csv",
         "n": 3766,
-        "sha256": "23f727528a358e485d4484c92935d3680765607769778b5c58d9b16576bc9bc5"
+        "sha256": "733a36ce09f8716cdc697446dabde68d43da875f9c7e88092ba70345157bca22",
+        "sha256_file": "d918e0172e10814c6a92fcc7dab0ae7a9e2d163c36dc8751ea2278446cb9b738"
       },
       "casf2016_test": {
         "path": "release/splits/casf2016_test.csv",
         "n": 285,
-        "sha256": "cd8771ced83ed22e4722368f70bc98988a47ad7dcf86da00c70b711e430b7ea1"
+        "sha256": "e683bbf72c2733207ef6a3fb73ab4a44647bec585a0e5e5a274e551faa5b77e7",
+        "sha256_file": "e82db589c4ebb917d32510ee1a95218ef200842e467de2b80c08f9bcf40896fc"
       },
       "bdb2020plus": {
         "path": "release/splits/bdb2020plus.csv",
         "n": 115,
-        "sha256": "53eed3316d6a2a3e14cc21b0f29a90b5af480c82eb6837bc1ab95ac5e077fc87"
+        "sha256": "8b31b1f63dce4f136bcdc020a59f3bf41c1367594e9dcabdc9c524a03efcd58c",
+        "sha256_file": "bca5146c8cbbbfc7eee01e5895ecce90020594ea1756cd7de14a14648865e545"
       },
       "lp_pdbbind_train": {
         "path": "release/splits/lp_pdbbind_train.csv",
         "n": 7276,
-        "sha256": "020cfad229d684e32dcd1ed260706746da7305823dad5752244bdca0470cc187"
+        "sha256": "9e5e6a17da9c46ebb9ca74f26cd4c5aee81b526bb513567cdd7a036ae37e4f82",
+        "sha256_file": "dba350a26012ccb0c937225a04ef70c93a94e8097061073cf7edbebce1774151"
       },
       "lp_pdbbind_val": {
         "path": "release/splits/lp_pdbbind_val.csv",
         "n": 941,
-        "sha256": "c02d8ac7b5870bc5cfbb44165a572e5fe548297b8c1c494a3b413131f9b83c28"
+        "sha256": "1ed4039dfaa08f4da60fb22ea71748dad0d82df662c021fc45c92c629936ed10",
+        "sha256_file": "ef5c0b75d230da56472eb45f5f594db776c0c5798c1bb70fd270db1f2a4d862b"
       },
       "lp_pdbbind_test": {
         "path": "release/splits/lp_pdbbind_test.csv",
         "n": 2138,
-        "sha256": "f2cf051c7b5e992581eb5cdb4c8cc51bd4a81c4b77fa3b8eafe13d7759b47afc"
+        "sha256": "f759947b42d2595aa690740db8b88f76aedcb363511908603b7571d6cde01be7",
+        "sha256_file": "b305b691c5c4a7f8e31c1ffb6dd109009205e99569656b139fdd672a1b2eb91c"
       },
       "pdbbind2013_train": {
         "path": "release/splits/pdbbind2013_train.csv",
         "n": 2095,
-        "sha256": "d1a9b2c098ed48972ba6249531823031d3ed53bfd756cd4d975869d62d4e8659"
+        "sha256": "38d4bc168d0bd00ee4c2ef39b976b2927deafca31d4c5fa7b9bfe819ef60ee8b",
+        "sha256_file": "fb910422fa01f3c64d4c4ce8af43727f71c4065a91571090fc8820167fb31869"
       },
       "pdbbind2013_val": {
         "path": "release/splits/pdbbind2013_val.csv",
         "n": 540,
-        "sha256": "b33d88ef37c78c02e1dd8eeb26ef287093629dc0f5b0923e6d75b40d9648038b"
+        "sha256": "28c3df828f21ee676663b67edf0958789ef15e0b6a3a329ee845861d396d6a15",
+        "sha256_file": "a819465f99d3fedea47d68d1cfa4038aa4119f9172427e8fe4e7819d8b7efc31"
       },
       "pdbbind2013_test": {
         "path": "release/splits/pdbbind2013_test.csv",
         "n": 193,
-        "sha256": "646c38d282af4b53a26ef501979199a4eccb3079f630fb1a471cc2e54571beaf"
+        "sha256": "24307c91bd997dab05924312334a1493b5c8a30cd7a5dc95aeda0c15c108fe46",
+        "sha256_file": "1073ffb518216c8bdaa6ddc67b43e82f5f0c7f782f2642227568c11d5a9553d3"
+      },
+      "pdbbind2016_train3758": {
+        "path": "release/splits/pdbbind2016_train3758.csv",
+        "n": 3758,
+        "sha256": "6a42c6f4d238da1b53e4eb5de14a4ad081b6662fcaf209ea03abe5b735b2734a",
+        "sha256_file": "3e2305efa1f8376d0b1432ad1ee928ce96fcf1fad65394b5c1957aa0c29a6869",
+        "note": "context-complete PDBbind-2016 training subset used to fit the readout (3758 of 3766 rows), order preserved from the released parity record"
       }
     }
   },
@@ -137,25 +156,25 @@
     "tables": {
       "exp1_main_casf2016": {
         "path": "release/tables/exp1_main_casf2016.csv",
-        "sha256": "9fcbfeebb185b722c6a293759759caa3e2ce16745d5d9a0f397f65978ac86412"
+        "sha256": "46af55870237ac517013875a76fb9683a815ab2d4c9c57223bd0c80a177b329b"
       },
       "exp2_bdb2020plus": {
         "path": "release/tables/exp2_bdb2020plus.csv",
-        "sha256": "3dc5c431505416e645a4ce5e0b3e9dde6cab362b5664843b367f2741be3ec0f1"
+        "sha256": "791b4f44e062035ef0f2171b7455e59a17816a92bb2f7d505f4998d3c3812435"
       },
       "exp2_lp_pdbbind": {
         "path": "release/tables/exp2_lp_pdbbind.csv",
-        "sha256": "b7d9adb773fe91d079de4ea13862197abf67052d512dbf103d15371d77d6b769"
+        "sha256": "0b0f8d7c92062508aaa143613c1e6d5efd9ba81fd13d8861ecf1759225cca518"
       },
       "exp2_pdbbind2013": {
         "path": "release/tables/exp2_pdbbind2013.csv",
-        "sha256": "08d2e77d0cb7d5be2ebb8e3455d8a915b86d443f11f19c2c6b5d3b44dbb13ded"
+        "sha256": "325a3e088752341db63aae3cadcc087b7bfd6cc265ee0580c9552218406d534c"
       }
     },
     "figure_source": {
       "fig2_casf2016": {
         "path": "release/figures/fig2_casf2016_source.csv",
-        "sha256": "45736d95ae001f2c508447d11530bd435ac42cfede04a332dbd5431fa6a0504e",
+        "sha256": "b1227f9f04d7c6e7877c2f86fa923e0ec816c8b63d602eac8d8deb1cbdc00af9",
         "panels": [
           "a",
           "b"
@@ -166,7 +185,7 @@
       "casf2016_seed20261022": {
         "path": "release/predictions/casf2016_pgl_seed20261022.csv",
         "n": 285,
-        "sha256": "713207f49bba2083e791dece4eb7ec0d054f526f05db602fbabbc3b0c160043c"
+        "sha256": "4997f30f119b26ba42fc3335046d9d15c2ba4cb21447a0d98362b79ed0c4d1e3"
       }
     },
     "benchmarks": {
