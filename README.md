@@ -153,8 +153,7 @@ and needs no network access.
 
 If you use PGL, please cite the manuscript:
 
-> Persistent Gauss-Linking Operators Encode Contact Arrangement for Protein-Ligand
-> Affinity.
+> Persistent Gauss-Linking Operators for Embedded Interaction Geometry.
 
 The machine-readable record, including the author list and version, is maintained in
 [CITATION.cff](CITATION.cff).

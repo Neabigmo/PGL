@@ -81,6 +81,9 @@ def test_versions_agree_across_metadata():
     assert re.search(rf"^version:\s*{re.escape(pgl.__version__)}\s*$", citation, re.MULTILINE)
     assert f'version = "{pgl.__version__}"' in pyproject
     assert RELEASE["release"]["paper_title"] in citation
+    assert RELEASE["release"]["paper_title"] == (
+        "Persistent Gauss-Linking Operators for Embedded Interaction Geometry"
+    )
 
 
 def test_feature_matrix_is_1279_columns(toy_tokens):
@@ -214,6 +217,7 @@ def test_readme_states_the_released_model():
     assert "287 contact-token" in readme
     assert "legacy/" in readme
     assert RELEASE["release"]["tag"] in readme
+    assert RELEASE["release"]["paper_title"] in readme
 
 
 def test_release_json_is_valid_json():

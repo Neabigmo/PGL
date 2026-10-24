@@ -15,6 +15,7 @@ The contact tokens are the per-edge readout of the operator. Each token has
 57 entries: 15 chemistry channels, 7 local spectral responses, 32 interface
 geometry descriptors and 3 coupling summaries. Averaging and taking the
 standard deviation over the contact edges gives the 114-dimensional block.
+The three blocks total 287 = 15 + 114 + 158 columns.
 
 The representation is label-free and fit-free: two calls on the same
 complex return bit-identical vectors.
