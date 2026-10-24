@@ -1,0 +1,69 @@
+method,label,family,benchmark,n,rmse,status
+pgl,PGL,spectral / interface,CASF-2016,285,1.301188,ok
+pgl,PGL,spectral / interface,BDB2020+,115,1.040092,ok
+pgl,PGL,spectral / interface,LP-PDBBind,2138,1.635819,ok
+pgl,PGL,spectral / interface,PDBbind-2013,184,1.575119,ok
+mgli,mGLI,spectral / interface,CASF-2016,285,1.329406,ok
+mgli,mGLI,spectral / interface,BDB2020+,115,1.485782,ok
+mgli,mGLI,spectral / interface,LP-PDBBind,2138,1.627901,ok
+mgli,mGLI,spectral / interface,PDBbind-2013,184,1.658454,ok
+catboost,CatBoost,chemistry / counts,CASF-2016,285,1.331456,ok
+catboost,CatBoost,chemistry / counts,BDB2020+,114,1.364973,ok
+catboost,CatBoost,chemistry / counts,LP-PDBBind,2138,1.603747,ok
+catboost,CatBoost,chemistry / counts,PDBbind-2013,184,1.636322,ok
+ecif,ECIF,chemistry / counts,CASF-2016,285,1.360402,ok
+ecif,ECIF,chemistry / counts,BDB2020+,115,2.866101,ok
+ecif,ECIF,chemistry / counts,LP-PDBBind,2138,1.705391,ok
+ecif,ECIF,chemistry / counts,PDBbind-2013,184,1.607113,ok
+pps_xgb,PPS-XGB,chemistry / counts,CASF-2016,285,1.372535,ok
+pps_xgb,PPS-XGB,chemistry / counts,BDB2020+,115,2.13455,ok
+pps_xgb,PPS-XGB,chemistry / counts,LP-PDBBind,2138,1.660316,ok
+pps_xgb,PPS-XGB,chemistry / counts,PDBbind-2013,184,1.571764,ok
+pps_svm,PPS-SVM,chemistry / counts,CASF-2016,285,1.502792,ok
+pps_svm,PPS-SVM,chemistry / counts,BDB2020+,115,2.532732,ok
+pps_svm,PPS-SVM,chemistry / counts,LP-PDBBind,2138,1.649841,ok
+pps_svm,PPS-SVM,chemistry / counts,PDBbind-2013,184,1.7458,ok
+ecif_mlp,ECIF-MLP,chemistry / counts,CASF-2016,285,1.508914,ok
+ecif_mlp,ECIF-MLP,chemistry / counts,BDB2020+,115,2.832404,ok
+ecif_mlp,ECIF-MLP,chemistry / counts,LP-PDBBind,2138,2.013913,ok
+ecif_mlp,ECIF-MLP,chemistry / counts,PDBbind-2013,184,1.753104,ok
+rdkit_xgb,RDKit-XGB,chemistry / counts,CASF-2016,285,1.710195,ok
+rdkit_xgb,RDKit-XGB,chemistry / counts,BDB2020+,115,1.412869,ok
+rdkit_xgb,RDKit-XGB,chemistry / counts,LP-PDBBind,2138,1.721714,ok
+rdkit_xgb,RDKit-XGB,chemistry / counts,PDBbind-2013,184,1.704514,ok
+rfscore,RF-Score,chemistry / counts,CASF-2016,285,1.663638,ok
+rfscore,RF-Score,chemistry / counts,BDB2020+,115,1.076782,ok
+rfscore,RF-Score,chemistry / counts,LP-PDBBind,2138,1.535501,ok
+rfscore,RF-Score,chemistry / counts,PDBbind-2013,184,2.156886,ok
+pafnucy,Pafnucy,learned 3D,CASF-2016,285,1.596993,ok
+pafnucy,Pafnucy,learned 3D,BDB2020+,115,1.159295,ok
+pafnucy,Pafnucy,learned 3D,LP-PDBBind,2138,1.612077,ok
+pafnucy,Pafnucy,learned 3D,PDBbind-2013,184,2.430046,ok
+ign,IGN,learned 3D,CASF-2016,285,1.619406,ok
+ign,IGN,learned 3D,BDB2020+,115,1.30991,ok
+ign,IGN,learned 3D,LP-PDBBind,2138,1.818393,ok
+ign,IGN,learned 3D,PDBbind-2013,184,1.887044,ok
+graphdta,GraphDTA,learned 3D,CASF-2016,285,1.73523,ok
+graphdta,GraphDTA,learned 3D,BDB2020+,115,1.566555,ok
+graphdta,GraphDTA,learned 3D,LP-PDBBind,2138,1.674535,ok
+graphdta,GraphDTA,learned 3D,PDBbind-2013,184,2.154725,ok
+deepdta,DeepDTA,learned 3D,CASF-2016,285,1.447257,ok
+deepdta,DeepDTA,learned 3D,BDB2020+,115,1.559738,ok
+deepdta,DeepDTA,learned 3D,LP-PDBBind,2138,1.673159,ok
+deepdta,DeepDTA,learned 3D,PDBbind-2013,184,1.933852,ok
+onionnet,OnionNet,learned 3D,CASF-2016,285,1.778663,ok
+onionnet,OnionNet,learned 3D,BDB2020+,,,missing
+onionnet,OnionNet,learned 3D,LP-PDBBind,,,missing
+onionnet,OnionNet,learned 3D,PDBbind-2013,184,2.140399,ok
+pointcloud,Point-Cloud,learned 3D,CASF-2016,285,2.292843,ok
+pointcloud,Point-Cloud,learned 3D,BDB2020+,115,7.296314,ok
+pointcloud,Point-Cloud,learned 3D,LP-PDBBind,2136,2.86024,ok
+pointcloud,Point-Cloud,learned 3D,PDBbind-2013,184,2.798409,ok
+vina,AutoDock Vina,empirical,CASF-2016,272,1.79491,ok
+vina,AutoDock Vina,empirical,BDB2020+,115,1.701947,ok
+vina,AutoDock Vina,empirical,LP-PDBBind,2131,1.657262,ok
+vina,AutoDock Vina,empirical,PDBbind-2013,184,1.883872,ok
+deltavina,ΔvinaRF20,empirical,CASF-2016,249,1.699369,ok
+deltavina,ΔvinaRF20,empirical,BDB2020+,115,2.186094,ok
+deltavina,ΔvinaRF20,empirical,LP-PDBBind,2130,1.716898,ok
+deltavina,ΔvinaRF20,empirical,PDBbind-2013,,,missing

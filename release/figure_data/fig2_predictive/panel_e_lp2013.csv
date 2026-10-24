@@ -1,0 +1,15 @@
+benchmark,method,label,rmse,rmse_sd,n,protocol
+LP-PDBBind,pgl,PGL,1.635819,0.030589,2138,retrained
+LP-PDBBind,mgli,mGLI,1.627901,0.00809,2138,retrained
+LP-PDBBind,ecif,ECIF,1.705391,0.011301,2138,retrained
+LP-PDBBind,rfscore,RF-Score,1.535501,0.000817,2138,retrained
+LP-PDBBind,pafnucy,Pafnucy,1.612077,0.021534,2138,retrained
+LP-PDBBind,ign,IGN,1.818393,0.012715,2138,retrained
+LP-PDBBind,pps_xgb,PPS-XGB,1.660316,0.00206,2138,retrained
+PDBbind-2013,pgl,PGL,1.575119,0.028516,184,retrained
+PDBbind-2013,mgli,mGLI,1.658454,0.010598,184,retrained
+PDBbind-2013,ecif,ECIF,1.607113,0.009472,184,retrained
+PDBbind-2013,rfscore,RF-Score,2.156886,0.001269,184,retrained
+PDBbind-2013,pafnucy,Pafnucy,2.430046,0.363776,184,retrained
+PDBbind-2013,ign,IGN,1.887044,0.065102,184,retrained
+PDBbind-2013,pps_xgb,PPS-XGB,1.571764,0.003453,184,retrained

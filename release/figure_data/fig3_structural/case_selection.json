@@ -1,0 +1,177 @@
+{
+ "schema": "fig3v3-case-selection-v1",
+ "rule": {
+  "universe": "285 targets with >=3 decoy poses",
+  "success_definition": "PGL ensemble Top-1 pose RMSD <= 2 A (near-native)",
+  "selection": "among PGL Top-1 successes, choose the target whose ensemble Top-1 RMSD is closest to the MEDIAN ensemble Top-1 RMSD of the success set (typical success, not the largest margin); ties -> lower target ID",
+  "anti_cherry_pick": "comparator margins are NOT used for ranking; the selected target is reported together with its actual comparator outcomes",
+  "n_success_targets": 93,
+  "median_success_top1_rmsd_A": 0.92
+ },
+ "chosen": {
+  "target": "2y5h",
+  "pgl_ensemble_top1_rmsd_A": 0.92,
+  "pgl_primary_top1_rmsd_mean_A": 4.27,
+  "ecif_top1_rmsd_A": 7.79,
+  "rfscore_top1_rmsd_A": 1.73,
+  "ecif_top1_success": false,
+  "rfscore_top1_success": true,
+  "n_poses": 94,
+  "near_native_ratio": 0.2128,
+  "top3_poses": [
+   {
+    "rank": 1,
+    "pose": "2y5h_616",
+    "rmsd": 0.92,
+    "pred_ensemble": 8.4328,
+    "pred_per_seed": {
+     "20261022": 8.4878,
+     "20261023": 8.389,
+     "20261024": 8.4215
+    },
+    "near_native": true
+   },
+   {
+    "rank": 2,
+    "pose": "2y5h_420",
+    "rmsd": 2.49,
+    "pred_ensemble": 8.4125,
+    "pred_per_seed": {
+     "20261022": 8.2724,
+     "20261023": 8.6049,
+     "20261024": 8.3603
+    },
+    "near_native": false
+   },
+   {
+    "rank": 3,
+    "pose": "2y5h_50",
+    "rmsd": 2.53,
+    "pred_ensemble": 8.4105,
+    "pred_per_seed": {
+     "20261022": 8.1382,
+     "20261023": 8.5406,
+     "20261024": 8.5528
+    },
+    "near_native": false
+   }
+  ],
+  "reference_ligand": "2y5h_ligand.sdf (CASF coreset crystal ligand)",
+  "receptor": "2y5h_protein.pdb / 2y5h_pocket.pdb (CASF coreset)",
+  "frame_note": "decoy poses and the crystal reference/ligand and receptor share the CASF crystal coordinate frame; the structures are exported WITHOUT any ligand-to-native re-alignment"
+ },
+ "candidates_near_median": [
+  {
+   "target": "2y5h",
+   "pgl_top1_rmsd_ensemble": 0.92,
+   "pgl_top1_rmsd_primary_mean": 4.27,
+   "absdiff_from_success_median_A": 0.0,
+   "ecif_top1_rmsd": 7.79,
+   "rfscore_top1_rmsd": 1.73,
+   "n_poses": 94,
+   "near_native_ratio": 0.2128
+  },
+  {
+   "target": "1uto",
+   "pgl_top1_rmsd_ensemble": 0.91,
+   "pgl_top1_rmsd_primary_mean": 1.997,
+   "absdiff_from_success_median_A": 0.01,
+   "ecif_top1_rmsd": 5.54,
+   "rfscore_top1_rmsd": 3.57,
+   "n_poses": 60,
+   "near_native_ratio": 0.3333
+  },
+  {
+   "target": "3ozt",
+   "pgl_top1_rmsd_ensemble": 0.91,
+   "pgl_top1_rmsd_primary_mean": 0.823,
+   "absdiff_from_success_median_A": 0.01,
+   "ecif_top1_rmsd": 8.63,
+   "rfscore_top1_rmsd": 8.63,
+   "n_poses": 100,
+   "near_native_ratio": 0.2
+  },
+  {
+   "target": "3acw",
+   "pgl_top1_rmsd_ensemble": 0.94,
+   "pgl_top1_rmsd_primary_mean": 1.473,
+   "absdiff_from_success_median_A": 0.02,
+   "ecif_top1_rmsd": 6.76,
+   "rfscore_top1_rmsd": 7.06,
+   "n_poses": 87,
+   "near_native_ratio": 0.2299
+  },
+  {
+   "target": "4cra",
+   "pgl_top1_rmsd_ensemble": 0.94,
+   "pgl_top1_rmsd_primary_mean": 8.013,
+   "absdiff_from_success_median_A": 0.02,
+   "ecif_top1_rmsd": 0.71,
+   "rfscore_top1_rmsd": 8.96,
+   "n_poses": 100,
+   "near_native_ratio": 0.2
+  },
+  {
+   "target": "4ivc",
+   "pgl_top1_rmsd_ensemble": 0.9,
+   "pgl_top1_rmsd_primary_mean": 1.99,
+   "absdiff_from_success_median_A": 0.02,
+   "ecif_top1_rmsd": 1.97,
+   "rfscore_top1_rmsd": 5.71,
+   "n_poses": 71,
+   "near_native_ratio": 0.2817
+  },
+  {
+   "target": "2wtv",
+   "pgl_top1_rmsd_ensemble": 0.95,
+   "pgl_top1_rmsd_primary_mean": 1.323,
+   "absdiff_from_success_median_A": 0.03,
+   "ecif_top1_rmsd": 1.22,
+   "rfscore_top1_rmsd": 7.52,
+   "n_poses": 100,
+   "near_native_ratio": 0.2
+  },
+  {
+   "target": "3kr8",
+   "pgl_top1_rmsd_ensemble": 0.95,
+   "pgl_top1_rmsd_primary_mean": 4.827,
+   "absdiff_from_success_median_A": 0.03,
+   "ecif_top1_rmsd": 0.92,
+   "rfscore_top1_rmsd": 7.87,
+   "n_poses": 81,
+   "near_native_ratio": 0.2469
+  },
+  {
+   "target": "4e6q",
+   "pgl_top1_rmsd_ensemble": 0.89,
+   "pgl_top1_rmsd_primary_mean": 0.833,
+   "absdiff_from_success_median_A": 0.03,
+   "ecif_top1_rmsd": 0.57,
+   "rfscore_top1_rmsd": 4.07,
+   "n_poses": 81,
+   "near_native_ratio": 0.2469
+  },
+  {
+   "target": "2vkm",
+   "pgl_top1_rmsd_ensemble": 0.96,
+   "pgl_top1_rmsd_primary_mean": 3.373,
+   "absdiff_from_success_median_A": 0.04,
+   "ecif_top1_rmsd": 2.12,
+   "rfscore_top1_rmsd": 7.61,
+   "n_poses": 97,
+   "near_native_ratio": 0.1753
+  }
+ ],
+ "alternative_1a30": {
+  "status": "documented alternative (Top-3 illustration), NOT the main case",
+  "why": "1a30 is a failed-Top-1 example (review item 53): ensemble Top-1 RMSD 5.38 A; best near-native pose 1a30_709 (RMSD 1.91 A) is ranked 3; use only as an explicitly labelled Top-3 example, never as a success case",
+  "n_poses": 74,
+  "n_near_native": 9,
+  "ensemble_top1_pose": "1a30_899",
+  "ensemble_top1_rmsd_A": 5.38,
+  "best_near_native_pose": "1a30_709",
+  "best_near_native_rmsd_A": 1.91,
+  "best_near_native_rank": 3
+ },
+ "native_pose_note": "The crystallographic native pose is not part of the decoy MOL2 universe (review item 54: do not headline a native rank; if needed, define the standard decoy universe explicitly)."
+}

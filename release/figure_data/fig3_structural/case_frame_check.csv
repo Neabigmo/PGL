@@ -1,0 +1,5 @@
+structure,ligand_heavy_atoms,receptor_heavy_atoms,min_ligand_receptor_distance_A,same_frame_no_realignment
+reference,60,2251,2.349,1
+top1_2y5h_616,60,2251,1.472,1
+top2_2y5h_420,60,2251,0.868,1
+top3_2y5h_50,60,2251,2.227,1

@@ -1,0 +1,8 @@
+method,label,rmse,rmse_sd,n,protocol
+pgl,PGL,1.040092,0.014987,115,no retraining
+rfscore,RF-Score,1.076782,0.00397,115,no retraining
+pafnucy,Pafnucy,1.159295,0.031493,115,no retraining
+ign,IGN,1.30991,0.083053,115,no retraining
+mgli,mGLI,1.485782,0.020568,115,no retraining
+ecif,ECIF,2.866101,0.048642,115,no retraining
+pps_xgb,PPS-XGB,2.13455,0.005389,115,no retraining

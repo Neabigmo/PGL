@@ -1,0 +1,5 @@
+selection,contact_id,contact_index0,lower_chain_index0,protein_chain,protein_resname,protein_resseq,protein_icode,protein_atom,ligand_heavy_index,ligand_element,protein_x,protein_y,protein_z,ligand_x,ligand_y,ligand_z,length_A,local_delta_rank
+top_local_delta,contact_10,10,29, ,SER,65, ,CA,2,C,19.990000,6.965000,25.253000,16.115000,8.924000,24.830000,4.362595,1
+top_local_delta,contact_09,9,27, ,GLN,64, ,CA,8,O,19.207000,10.506000,26.440000,16.578000,8.524000,23.744000,4.255394,2
+strongest_W_pair,contact_09,9,27, ,GLN,64, ,CA,8,O,19.207000,10.506000,26.440000,16.578000,8.524000,23.744000,4.255394,2
+strongest_W_pair,contact_11,11,30, ,SER,65, ,CA,3,O,19.990000,6.965000,25.253000,16.520000,8.515000,25.940000,3.862042,3

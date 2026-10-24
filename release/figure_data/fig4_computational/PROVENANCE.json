@@ -1,0 +1,58 @@
+{
+  "figure": "fig4_computational_v4",
+  "canvas_width_pt": 470,
+  "panel_manifest": {
+    "panel_a_accuracy_cost": {
+      "source_csv": "panel_a_accuracy_cost.csv",
+      "n_rows": 6,
+      "columns": [
+        "label",
+        "method",
+        "seconds",
+        "rmse",
+        "n",
+        "threads",
+        "gpu",
+        "resource",
+        "state",
+        "kind"
+      ],
+      "metric": "see figure caption",
+      "unit": "pK / A / fraction / ms as named in the column headers",
+      "uncertainty": "reported in caption"
+    },
+    "panel_b_components": {
+      "source_csv": "panel_b_components.csv",
+      "n_rows": 5,
+      "columns": [
+        "state",
+        "segment",
+        "ms"
+      ],
+      "metric": "see figure caption",
+      "unit": "pK / A / fraction / ms as named in the column headers",
+      "uncertainty": "reported in caption"
+    },
+    "panel_c_scaling": {
+      "source_csv": "panel_c_scaling.csv",
+      "n_rows": 8,
+      "columns": [
+        "sample_id",
+        "n_protein_ca",
+        "n_ligand_heavy",
+        "n_contacts_7A",
+        "n_edges_middle_window",
+        "n_edges_upper_window",
+        "operator_time_ms_median",
+        "operator_time_ms_min",
+        "operator_time_ms_max",
+        "n"
+      ],
+      "metric": "see figure caption",
+      "unit": "pK / A / fraction / ms as named in the column headers",
+      "uncertainty": "reported in caption"
+    }
+  },
+  "sources": {},
+  "provenance_note": "Each panel maps to the listed CSV in source/; model/checkpoint, metric, unit, n and uncertainty are recorded per panel in the caption and in the source columns."
+}

@@ -1,0 +1,4 @@
+k,convention,chance,pgl_mean,pgl_ci95_low,pgl_ci95_high,ecif_mean,ecif_ci95_low,ecif_ci95_high,rfscore_mean,rfscore_ci95_low,rfscore_ci95_high,pgl_ensemble_mean_check,abs_margin_pgl_minus_ecif_pp,abs_margin_pgl_minus_chance_pp
+1,"PRIMARY: per-seed Top-k success averaged over 3 seeds, then averaged over 285 targets; bootstrap resamples targets",0.244302,0.338012,0.295877,0.380117,0.266667,0.214035,0.315789,0.105263,0.073684,0.14386,0.326316,7.134,9.371
+2,"PRIMARY: per-seed Top-k success averaged over 3 seeds, then averaged over 285 targets; bootstrap resamples targets",0.424447,0.48538,0.439737,0.529825,0.414035,0.357895,0.470175,0.214035,0.164912,0.259649,0.522807,7.134,6.093
+3,"PRIMARY: per-seed Top-k success averaged over 3 seeds, then averaged over 285 targets; bootstrap resamples targets",0.558277,0.611696,0.563743,0.663158,0.480702,0.421053,0.540351,0.280702,0.22807,0.333333,0.621053,13.099,5.342

@@ -1,0 +1,81 @@
+{
+  "source_complex": {
+    "sample_id": "10gs",
+    "window": "K5,K6",
+    "manifest": "manifests/exp1/pdbbind2016_dev.csv",
+    "protein": "/root/autodl-tmp/pgl_rep_dataset/pdbbind_v2016_casf2016_frozen/raw/pdbbind_v2016_full/v2016/10gs/10gs_pocket.pdb",
+    "ligand": "/root/autodl-tmp/PGL_JCIM_CODEX_V3_WORKSPACE_20261022/data/processed/A_structure_v3_5182dccaad83/10gs/ligand.sdf"
+  },
+  "n_contacts": 17,
+  "contact_index_convention": "0-based position in the (K5,K6) cross-contact list; identical to the cross_rows order of the frozen extractor",
+  "chain_space": {
+    "n_vertices": 76,
+    "lower_chain_1simplices_edges_x": 80,
+    "upper_chain_1simplices_edges_y": 109,
+    "upper_2simplices_triangles_y": 47,
+    "b1x_shape": [
+      76,
+      80
+    ],
+    "b2p_shape": [
+      80,
+      23
+    ],
+    "note": "the lower chain space of the real (K5,K6) window has 80 one-simplices; the 225 stated in the old prose is not reproduced by the frozen extractor. The 80 is the source-figure value reported by V3"
+  },
+  "operator": {
+    "beta1": 1,
+    "n_evals": 80,
+    "zero_eigenvalue_tolerance": {
+      "1e-08": 1,
+      "1e-10": 1,
+      "1e-12": 1
+    },
+    "evals_min": 5.164528023694552e-16,
+    "evals_max": 7.711882870753844
+  },
+  "metric": {
+    "eta": 1.0,
+    "dmax": 0.32976765637142214,
+    "c_eta_over_2dmax_delta": 1.5162190419186672,
+    "kappa_M_full": 1.816769651685105,
+    "note": "M = I + c L_G; M-I off-diagonals are -c W_ab (negative when W_ab>0)"
+  },
+  "local_response": {
+    "times": [
+      0.25,
+      1.0,
+      4.0,
+      16.0
+    ],
+    "quantity": "h_a(t) = sum_k u_{a,k}^2 exp(-t lambda_k) over the (K5,K6) operator; delta = eta=1 (M_G) minus eta=0 (M=I)",
+    "top_abs_delta_contact_indices": [
+      10,
+      9,
+      11,
+      7
+    ],
+    "top_abs_delta_values": {
+      "10": 0.042926965263,
+      "9": 0.0316869617998,
+      "11": 0.0261372910123,
+      "7": 0.0253308835548
+    },
+    "expected_top": "V3 expects the two largest changes at contact indices 10 and 9"
+  },
+  "quadratic_form": {
+    "pair_ranked_by": "|W_ab| over the 17-contact block (diagonal excluded)",
+    "v_convention": "v has non-zero entries only at a,b; total = (v_a^2+v_b^2) + c[d_a v_a^2 + d_b v_b^2 - 2 W_ab v_a v_b]; the cW_ab(v_a-v_b)^2 column is the pairing term, the diag/cross columns state the other terms explicitly"
+  },
+  "files": [
+    "fig1_contacts_k5k6.csv",
+    "fig1_W_contact.csv",
+    "fig1_M_minus_I.csv",
+    "fig1_LG_contact.csv",
+    "fig1_contact_metrics.csv",
+    "fig1_quadratic_forms.csv",
+    "fig1_fixed_support_perturbations.csv",
+    "fig1_local_delta_h.csv",
+    "fig1_panel_b_pairs.csv"
+  ]
+}

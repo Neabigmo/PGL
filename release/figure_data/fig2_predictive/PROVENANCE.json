@@ -1,0 +1,116 @@
+{
+  "figure": "fig2_predictive_utility_v4",
+  "canvas_width_pt": 470,
+  "panel_manifest": {
+    "panel_a_protocol_matrix": {
+      "source_csv": "panel_a_protocol_matrix.csv",
+      "n_rows": 68,
+      "columns": [
+        "family",
+        "method",
+        "method_label",
+        "benchmark",
+        "protocol",
+        "rmse",
+        "rmse_sd",
+        "n",
+        "status"
+      ],
+      "metric": "see figure caption",
+      "unit": "pK / A / fraction / ms as named in the column headers",
+      "uncertainty": "reported in caption"
+    },
+    "panel_b_calibration": {
+      "source_csv": "panel_b_calibration.csv",
+      "n_rows": 285,
+      "columns": [
+        "sample_id",
+        "casf_group",
+        "y_true",
+        "pgl",
+        "residual"
+      ],
+      "metric": "see figure caption",
+      "unit": "pK / A / fraction / ms as named in the column headers",
+      "uncertainty": "reported in caption"
+    },
+    "panel_b_residual_bins": {
+      "source_csv": "panel_b_residual_bins.csv",
+      "n_rows": 4,
+      "columns": [
+        "bin_low",
+        "bin_high",
+        "n",
+        "median_residual",
+        "ci_low",
+        "ci_high"
+      ],
+      "metric": "see figure caption",
+      "unit": "pK / A / fraction / ms as named in the column headers",
+      "uncertainty": "reported in caption"
+    },
+    "panel_c_group_mse": {
+      "source_csv": "panel_c_group_mse.csv",
+      "n_rows": 232,
+      "columns": [
+        "comparator",
+        "casf_group",
+        "mse_pgl",
+        "mse_comparator",
+        "delta_mse",
+        "n_group"
+      ],
+      "metric": "see figure caption",
+      "unit": "pK / A / fraction / ms as named in the column headers",
+      "uncertainty": "reported in caption"
+    },
+    "panel_c_forest": {
+      "source_csv": "panel_c_forest.csv",
+      "n_rows": 4,
+      "columns": [
+        "comparator",
+        "estimate",
+        "ci_low",
+        "ci_high",
+        "p_value",
+        "n_groups"
+      ],
+      "metric": "see figure caption",
+      "unit": "pK / A / fraction / ms as named in the column headers",
+      "uncertainty": "reported in caption"
+    },
+    "panel_d_bdb_transfer": {
+      "source_csv": "panel_d_bdb_transfer.csv",
+      "n_rows": 7,
+      "columns": [
+        "method",
+        "label",
+        "rmse",
+        "rmse_sd",
+        "n",
+        "protocol"
+      ],
+      "metric": "see figure caption",
+      "unit": "pK / A / fraction / ms as named in the column headers",
+      "uncertainty": "reported in caption"
+    },
+    "panel_e_lp2013": {
+      "source_csv": "panel_e_lp2013.csv",
+      "n_rows": 14,
+      "columns": [
+        "benchmark",
+        "method",
+        "label",
+        "rmse",
+        "rmse_sd",
+        "n",
+        "protocol"
+      ],
+      "metric": "see figure caption",
+      "unit": "pK / A / fraction / ms as named in the column headers",
+      "uncertainty": "reported in caption"
+    }
+  },
+  "sources": {},
+  "provenance_note": "Each panel maps to the listed CSV in source/; model/checkpoint, metric, unit, n and uncertainty are recorded per panel in the caption and in the source columns."
+}

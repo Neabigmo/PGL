@@ -1,0 +1,13 @@
+comparison,k,convention,delta_pp,ci95_low_pp,ci95_high_pp,wins,ties,losses,n_targets,unit
+pgl_minus_ecif,1,primary_seedmean,7.135,1.868,12.515,94,139,52,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_ecif,1,ensemble_integer,5.965,-0.351,12.632,54,194,37,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_rfscore,1,primary_seedmean,23.275,17.775,28.772,137,125,23,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_rfscore,1,ensemble_integer,22.105,15.789,28.421,80,188,17,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_ecif,2,primary_seedmean,7.135,1.287,12.982,101,114,70,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_ecif,2,ensemble_integer,10.877,3.86,17.544,64,188,33,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_rfscore,2,primary_seedmean,27.135,21.053,32.865,151,95,39,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_rfscore,2,ensemble_integer,30.877,23.509,37.904,110,153,22,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_ecif,3,primary_seedmean,13.099,7.018,19.418,97,133,55,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_ecif,3,ensemble_integer,14.035,7.368,21.053,68,189,28,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_rfscore,3,primary_seedmean,33.099,26.781,39.415,145,97,43,285,"percentage points (absolute), paired target bootstrap 2000x"
+pgl_minus_rfscore,3,ensemble_integer,34.035,26.667,41.404,121,140,24,285,"percentage points (absolute), paired target bootstrap 2000x"

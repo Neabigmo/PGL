@@ -1,0 +1,7 @@
+comparison,convention,both_succeed,pgl_only,comparator_only,both_fail,total,pgl_success_definition,note
+pgl_minus_ecif,primary_seedmean,43,46,33,163,285,>0.5,primary_seedmean: success = mean of 3 per-seed Top-1 hits > 0.5; ensemble_integer: success = ensemble Top-1 pose RMSD <= 2 A
+pgl_minus_rfscore,primary_seedmean,11,78,19,177,285,>0.5,primary_seedmean: success = mean of 3 per-seed Top-1 hits > 0.5; ensemble_integer: success = ensemble Top-1 pose RMSD <= 2 A
+pgl_minus_ecif,ensemble_integer,39,54,37,155,285,ensemble Top-1 RMSD<=2A,primary_seedmean: success = mean of 3 per-seed Top-1 hits > 0.5; ensemble_integer: success = ensemble Top-1 pose RMSD <= 2 A
+pgl_minus_rfscore,ensemble_integer,13,80,17,175,285,ensemble Top-1 RMSD<=2A,primary_seedmean: success = mean of 3 per-seed Top-1 hits > 0.5; ensemble_integer: success = ensemble Top-1 pose RMSD <= 2 A
+pgl_minus_ecif,"seed_level(3x285, pseudo-replicates)",127,162,101,465,855,per-seed Top-1 RMSD<=2A,seed-level counts are not independent observations; provided for transparency only
+pgl_minus_rfscore,"seed_level(3x285, pseudo-replicates)",35,254,55,511,855,per-seed Top-1 RMSD<=2A,seed-level counts are not independent observations; provided for transparency only

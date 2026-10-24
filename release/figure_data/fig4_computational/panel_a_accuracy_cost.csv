@@ -1,0 +1,7 @@
+label,method,seconds,rmse,n,threads,gpu,resource,state,kind
+PGL warm,pgl,0.3458,1.301188,20,1,1 GPU,CPU+GPU,warm,latency
+PGL cold,pgl,0.58846,1.301188,20,1,1 GPU,CPU+GPU,cold,latency
+PGL 8-worker,pgl,0.22000999999999998,1.301188,20,8,1 GPU,CPU+GPU,warm,throughput
+mGLI,mgli,53.575,1.329406,4,1,none,CPU,cold,latency
+PPS warm,pps_xgb,80.0,1.372535,20,1,none,CPU,warm,latency
+PPS cold,pps_xgb,120.71,1.372535,20,1,none,CPU,cold,latency

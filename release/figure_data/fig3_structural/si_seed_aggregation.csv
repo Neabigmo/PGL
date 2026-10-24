@@ -1,0 +1,10 @@
+k,seed,pgl_topk_rate,note
+1,20261022,0.354386,single-seed rate; the primary value is the mean over the three seeds
+1,20261023,0.336842,single-seed rate; the primary value is the mean over the three seeds
+1,20261024,0.322807,single-seed rate; the primary value is the mean over the three seeds
+2,20261022,0.498246,single-seed rate; the primary value is the mean over the three seeds
+2,20261023,0.452632,single-seed rate; the primary value is the mean over the three seeds
+2,20261024,0.505263,single-seed rate; the primary value is the mean over the three seeds
+3,20261022,0.614035,single-seed rate; the primary value is the mean over the three seeds
+3,20261023,0.589474,single-seed rate; the primary value is the mean over the three seeds
+3,20261024,0.631579,single-seed rate; the primary value is the mean over the three seeds

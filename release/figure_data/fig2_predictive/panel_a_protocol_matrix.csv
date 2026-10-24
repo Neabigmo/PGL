@@ -1,0 +1,69 @@
+family,method,method_label,benchmark,protocol,rmse,rmse_sd,n,status
+spectral / interface,pgl,PGL,CASF-2016,frozen development model,1.301188,0.016711,285,ok
+spectral / interface,pgl,PGL,BDB2020+,frozen development model,1.040092,0.014987,115,ok
+spectral / interface,pgl,PGL,LP-PDBBind,benchmark-specific retraining,1.635819,0.030589,2138,ok
+spectral / interface,pgl,PGL,PDBbind-2013,benchmark-specific retraining,1.575119,0.028516,184,ok
+spectral / interface,mgli,mGLI,CASF-2016,frozen development model,1.329406,0.012146,285,ok
+spectral / interface,mgli,mGLI,BDB2020+,frozen development model,1.485782,0.020568,115,ok
+spectral / interface,mgli,mGLI,LP-PDBBind,benchmark-specific retraining,1.627901,0.00809,2138,ok
+spectral / interface,mgli,mGLI,PDBbind-2013,benchmark-specific retraining,1.658454,0.010598,184,ok
+chemistry / counts,catboost,CatBoost,CASF-2016,frozen development model,1.331456,0.005869,285,ok
+chemistry / counts,catboost,CatBoost,BDB2020+,frozen development model,1.364973,0.011756,114,ok
+chemistry / counts,catboost,CatBoost,LP-PDBBind,benchmark-specific retraining,1.603747,0.011246,2138,ok
+chemistry / counts,catboost,CatBoost,PDBbind-2013,benchmark-specific retraining,1.636322,0.017525,184,ok
+chemistry / counts,ecif,ECIF,CASF-2016,frozen development model,1.360402,0.005508,285,ok
+chemistry / counts,ecif,ECIF,BDB2020+,frozen development model,2.866101,0.048642,115,ok
+chemistry / counts,ecif,ECIF,LP-PDBBind,benchmark-specific retraining,1.705391,0.011301,2138,ok
+chemistry / counts,ecif,ECIF,PDBbind-2013,benchmark-specific retraining,1.607113,0.009472,184,ok
+chemistry / counts,pps_xgb,PPS-XGB,CASF-2016,frozen development model,1.372535,0.003196,285,ok
+chemistry / counts,pps_xgb,PPS-XGB,BDB2020+,frozen development model,2.13455,0.005389,115,ok
+chemistry / counts,pps_xgb,PPS-XGB,LP-PDBBind,benchmark-specific retraining,1.660316,0.00206,2138,ok
+chemistry / counts,pps_xgb,PPS-XGB,PDBbind-2013,benchmark-specific retraining,1.571764,0.003453,184,ok
+chemistry / counts,pps_svm,PPS-SVM,CASF-2016,frozen development model,1.502792,0.0,285,ok
+chemistry / counts,pps_svm,PPS-SVM,BDB2020+,frozen development model,2.532732,0.0,115,ok
+chemistry / counts,pps_svm,PPS-SVM,LP-PDBBind,benchmark-specific retraining,1.649841,0.0,2138,ok
+chemistry / counts,pps_svm,PPS-SVM,PDBbind-2013,benchmark-specific retraining,1.7458,0.0,184,ok
+chemistry / counts,ecif_mlp,ECIF-MLP,CASF-2016,frozen development model,1.508914,0.05743,285,ok
+chemistry / counts,ecif_mlp,ECIF-MLP,BDB2020+,frozen development model,2.832404,0.171709,115,ok
+chemistry / counts,ecif_mlp,ECIF-MLP,LP-PDBBind,benchmark-specific retraining,2.013913,0.058232,2138,ok
+chemistry / counts,ecif_mlp,ECIF-MLP,PDBbind-2013,benchmark-specific retraining,1.753104,0.029129,184,ok
+chemistry / counts,rdkit_xgb,RDKit-XGB,CASF-2016,frozen development model,1.710195,0.026639,285,ok
+chemistry / counts,rdkit_xgb,RDKit-XGB,BDB2020+,frozen development model,1.412869,0.036991,115,ok
+chemistry / counts,rdkit_xgb,RDKit-XGB,LP-PDBBind,benchmark-specific retraining,1.721714,0.008389,2138,ok
+chemistry / counts,rdkit_xgb,RDKit-XGB,PDBbind-2013,benchmark-specific retraining,1.704514,0.026435,184,ok
+chemistry / counts,rfscore,RF-Score,CASF-2016,frozen development model,1.663638,0.002317,285,ok
+chemistry / counts,rfscore,RF-Score,BDB2020+,frozen development model,1.076782,0.00397,115,ok
+chemistry / counts,rfscore,RF-Score,LP-PDBBind,benchmark-specific retraining,1.535501,0.000817,2138,ok
+chemistry / counts,rfscore,RF-Score,PDBbind-2013,benchmark-specific retraining,2.156886,0.001269,184,ok
+learned 3D,pafnucy,Pafnucy,CASF-2016,frozen development model,1.596993,0.068087,285,ok
+learned 3D,pafnucy,Pafnucy,BDB2020+,frozen development model,1.159295,0.031493,115,ok
+learned 3D,pafnucy,Pafnucy,LP-PDBBind,benchmark-specific retraining,1.612077,0.021534,2138,ok
+learned 3D,pafnucy,Pafnucy,PDBbind-2013,benchmark-specific retraining,2.430046,0.363776,184,ok
+learned 3D,ign,IGN,CASF-2016,frozen development model,1.619406,0.052504,285,ok
+learned 3D,ign,IGN,BDB2020+,frozen development model,1.30991,0.083053,115,ok
+learned 3D,ign,IGN,LP-PDBBind,benchmark-specific retraining,1.818393,0.012715,2138,ok
+learned 3D,ign,IGN,PDBbind-2013,benchmark-specific retraining,1.887044,0.065102,184,ok
+learned 3D,graphdta,GraphDTA,CASF-2016,frozen development model,1.73523,0.062179,285,ok
+learned 3D,graphdta,GraphDTA,BDB2020+,frozen development model,1.566555,0.127769,115,ok
+learned 3D,graphdta,GraphDTA,LP-PDBBind,benchmark-specific retraining,1.674535,0.053764,2138,ok
+learned 3D,graphdta,GraphDTA,PDBbind-2013,benchmark-specific retraining,2.154725,0.294916,184,ok
+learned 3D,deepdta,DeepDTA,CASF-2016,frozen development model,1.447257,0.059854,285,ok
+learned 3D,deepdta,DeepDTA,BDB2020+,frozen development model,1.559738,0.114612,115,ok
+learned 3D,deepdta,DeepDTA,LP-PDBBind,benchmark-specific retraining,1.673159,0.119492,2138,ok
+learned 3D,deepdta,DeepDTA,PDBbind-2013,benchmark-specific retraining,1.933852,0.056667,184,ok
+learned 3D,onionnet,OnionNet,CASF-2016,frozen development model,1.778663,0.075279,285,ok
+learned 3D,onionnet,OnionNet,BDB2020+,frozen development model,,,,missing
+learned 3D,onionnet,OnionNet,LP-PDBBind,benchmark-specific retraining,,,,missing
+learned 3D,onionnet,OnionNet,PDBbind-2013,benchmark-specific retraining,2.140399,0.123846,184,ok
+learned 3D,pointcloud,Point-Cloud,CASF-2016,frozen development model,2.292843,0.10406,285,ok
+learned 3D,pointcloud,Point-Cloud,BDB2020+,frozen development model,7.296314,0.481146,115,ok
+learned 3D,pointcloud,Point-Cloud,LP-PDBBind,benchmark-specific retraining,2.86024,1.216983,2136,ok
+learned 3D,pointcloud,Point-Cloud,PDBbind-2013,benchmark-specific retraining,2.798409,0.588283,184,ok
+empirical,vina,AutoDock Vina,CASF-2016,frozen development model,1.79491,0.0,272,ok
+empirical,vina,AutoDock Vina,BDB2020+,frozen development model,1.701947,0.0,115,ok
+empirical,vina,AutoDock Vina,LP-PDBBind,benchmark-specific retraining,1.657262,0.0,2131,ok
+empirical,vina,AutoDock Vina,PDBbind-2013,benchmark-specific retraining,1.883872,0.0,184,ok
+empirical,deltavina,ΔvinaRF20,CASF-2016,frozen development model,1.699369,0.0,249,ok
+empirical,deltavina,ΔvinaRF20,BDB2020+,frozen development model,2.186094,0.0,115,ok
+empirical,deltavina,ΔvinaRF20,LP-PDBBind,benchmark-specific retraining,1.716898,0.0,2130,ok
+empirical,deltavina,ΔvinaRF20,PDBbind-2013,benchmark-specific retraining,,,,missing
