@@ -1,14 +1,16 @@
 cff-version: 1.2.0
-message: "If you use PGL-Rep, cite the accompanying Persistent Gauss-Linking Laplacians manuscript and this software release."
-title: "PGL-Rep: Persistent Gauss-Linking Laplacians"
-version: 0.1.0
-date-released: 2026-09-02
+message: "If you use PGL, cite the manuscript listed under references and this software release."
+title: "Persistent Gauss-Linking Operators Encode Contact Arrangement for Protein-Ligand Affinity"
+version: 1.0.0
+date-released: 2026-10-24
 authors:
-  - name: "PGL-Rep study team"
+  # TODO(author): replace with the manuscript author list before release.
+  - name: "PGL authors"
 repository-code: "https://github.com/Neabigmo/PGL"
-license: "NOASSERTION"
+license: MIT
 keywords:
-  - protein-ligand representation
+  - protein-ligand affinity
   - persistent topology
   - Gauss linking
+  - spectral operator
   - molecular machine learning

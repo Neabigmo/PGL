@@ -6,9 +6,6 @@ htmlcov/
 dist/
 build/
 *.egg-info/
-*.npy
-*.npz
-*.pdb
-*.sdf
 .venv/
 .audit_venv/
+.ruff_cache/

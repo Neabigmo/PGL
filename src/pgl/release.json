@@ -1,0 +1,217 @@
+{
+  "release": {
+    "version": "1.0.0",
+    "tag": "v1.0.0",
+    "date": "2026-10-24",
+    "paper_title": "Persistent Gauss-Linking Operators Encode Contact Arrangement for Protein-Ligand Affinity"
+  },
+  "model": {
+    "model_id": "PGL-1.0.0",
+    "checkpoint_id": "d231f4a25706",
+    "name": "PGL",
+    "readout": "xgboost",
+    "hyperparameters": {
+      "n_estimators": 708,
+      "max_depth": 6,
+      "learning_rate": 0.052911547044925414,
+      "subsample": 0.7406949320228273,
+      "colsample_bytree": 0.9008575050404631,
+      "min_child_weight": 7.087190990869927,
+      "reg_lambda": 7.479441772354108,
+      "reg_alpha": 0.28096217359611636,
+      "objective": "reg:squarederror",
+      "tree_method": "hist"
+    },
+    "seeds": [
+      20261022,
+      20261023,
+      20261024
+    ],
+    "checkpoint_directory": "weights/pgl/seed{seed}",
+    "checkpoint_files": {
+      "model": "readout.json",
+      "config": "config.json"
+    }
+  },
+  "feature_schema": {
+    "dtype": "float32",
+    "total": 1279,
+    "blocks": [
+      {
+        "order": 0,
+        "name": "contact_tokens",
+        "dim": 287,
+        "producer": "pgl.features.contact_features",
+        "subblocks": [
+          {
+            "name": "chemistry",
+            "dim": 15
+          },
+          {
+            "name": "token_statistics",
+            "dim": 114
+          },
+          {
+            "name": "atomic_contacts",
+            "dim": 158
+          }
+        ]
+      },
+      {
+        "order": 1,
+        "name": "ctx_unimol",
+        "dim": 512,
+        "producer": "external: Uni-Mol ligand embedding"
+      },
+      {
+        "order": 2,
+        "name": "ctx_saprot",
+        "dim": 480,
+        "producer": "external: SaProt protein embedding"
+      }
+    ],
+    "missing_value_policy": "NaN for absent context, no imputation, no presence columns"
+  },
+  "sample_lists": {
+    "hash_definition": "sha256 of the split CSV file bytes (header sample_id, ids sorted)",
+    "splits": {
+      "pdbbind2016_dev": {
+        "path": "release/splits/pdbbind2016_dev.csv",
+        "n": 3766,
+        "sha256": "23f727528a358e485d4484c92935d3680765607769778b5c58d9b16576bc9bc5"
+      },
+      "casf2016_test": {
+        "path": "release/splits/casf2016_test.csv",
+        "n": 285,
+        "sha256": "cd8771ced83ed22e4722368f70bc98988a47ad7dcf86da00c70b711e430b7ea1"
+      },
+      "bdb2020plus": {
+        "path": "release/splits/bdb2020plus.csv",
+        "n": 115,
+        "sha256": "53eed3316d6a2a3e14cc21b0f29a90b5af480c82eb6837bc1ab95ac5e077fc87"
+      },
+      "lp_pdbbind_train": {
+        "path": "release/splits/lp_pdbbind_train.csv",
+        "n": 7276,
+        "sha256": "020cfad229d684e32dcd1ed260706746da7305823dad5752244bdca0470cc187"
+      },
+      "lp_pdbbind_val": {
+        "path": "release/splits/lp_pdbbind_val.csv",
+        "n": 941,
+        "sha256": "c02d8ac7b5870bc5cfbb44165a572e5fe548297b8c1c494a3b413131f9b83c28"
+      },
+      "lp_pdbbind_test": {
+        "path": "release/splits/lp_pdbbind_test.csv",
+        "n": 2138,
+        "sha256": "f2cf051c7b5e992581eb5cdb4c8cc51bd4a81c4b77fa3b8eafe13d7759b47afc"
+      },
+      "pdbbind2013_train": {
+        "path": "release/splits/pdbbind2013_train.csv",
+        "n": 2095,
+        "sha256": "d1a9b2c098ed48972ba6249531823031d3ed53bfd756cd4d975869d62d4e8659"
+      },
+      "pdbbind2013_val": {
+        "path": "release/splits/pdbbind2013_val.csv",
+        "n": 540,
+        "sha256": "b33d88ef37c78c02e1dd8eeb26ef287093629dc0f5b0923e6d75b40d9648038b"
+      },
+      "pdbbind2013_test": {
+        "path": "release/splits/pdbbind2013_test.csv",
+        "n": 193,
+        "sha256": "646c38d282af4b53a26ef501979199a4eccb3079f630fb1a471cc2e54571beaf"
+      }
+    }
+  },
+  "metrics": {
+    "label": "pK = -log10(Kd or Ki or IC50 [M])",
+    "definitions": {
+      "rmse": "sqrt(mean((y_true - y_pred) ** 2))",
+      "mae": "mean(abs(y_true - y_pred))",
+      "pearson": "Pearson correlation coefficient",
+      "spearman": "Spearman rank correlation coefficient"
+    },
+    "aggregation": "metrics per seed; mean and sample standard deviation (ddof=1) over seeds 20261022, 20261023, 20261024",
+    "comparison": "paired comparison of MSE, cluster bootstrap over protein groups, 2000 draws, 95% percentile interval"
+  },
+  "results": {
+    "tables": {
+      "exp1_main_casf2016": {
+        "path": "release/tables/exp1_main_casf2016.csv",
+        "sha256": "9fcbfeebb185b722c6a293759759caa3e2ce16745d5d9a0f397f65978ac86412"
+      },
+      "exp2_bdb2020plus": {
+        "path": "release/tables/exp2_bdb2020plus.csv",
+        "sha256": "3dc5c431505416e645a4ce5e0b3e9dde6cab362b5664843b367f2741be3ec0f1"
+      },
+      "exp2_lp_pdbbind": {
+        "path": "release/tables/exp2_lp_pdbbind.csv",
+        "sha256": "b7d9adb773fe91d079de4ea13862197abf67052d512dbf103d15371d77d6b769"
+      },
+      "exp2_pdbbind2013": {
+        "path": "release/tables/exp2_pdbbind2013.csv",
+        "sha256": "08d2e77d0cb7d5be2ebb8e3455d8a915b86d443f11f19c2c6b5d3b44dbb13ded"
+      }
+    },
+    "figure_source": {
+      "fig2_casf2016": {
+        "path": "release/figures/fig2_casf2016_source.csv",
+        "sha256": "45736d95ae001f2c508447d11530bd435ac42cfede04a332dbd5431fa6a0504e",
+        "panels": [
+          "a",
+          "b"
+        ]
+      }
+    },
+    "predictions": {
+      "casf2016_seed20261022": {
+        "path": "release/predictions/casf2016_pgl_seed20261022.csv",
+        "n": 285,
+        "sha256": "713207f49bba2083e791dece4eb7ec0d054f526f05db602fbabbc3b0c160043c"
+      }
+    },
+    "benchmarks": {
+      "casf2016": {
+        "n_test": 285,
+        "rmse_mean": 1.301188,
+        "rmse_std": 0.016711,
+        "mae_mean": 1.040576,
+        "pearson_mean": 0.813967,
+        "spearman_mean": 0.810833,
+        "seeds": 3,
+        "protocol": "frozen readout trained on PDBbind-2016 development"
+      },
+      "bdb2020plus": {
+        "n_test": 115,
+        "rmse_mean": 1.040092,
+        "rmse_std": 0.014987,
+        "mae_mean": 0.788359,
+        "pearson_mean": 0.542019,
+        "spearman_mean": 0.502847,
+        "seeds": 3,
+        "protocol": "frozen readout, external confirmation, no retraining",
+        "coverage": "115/115"
+      },
+      "lp_pdbbind": {
+        "n_test": 2138,
+        "rmse_mean": 1.635819,
+        "rmse_std": 0.030589,
+        "mae_mean": 1.275476,
+        "pearson_mean": 0.528388,
+        "spearman_mean": 0.48996,
+        "seeds": 3,
+        "protocol": "retrained on the official LP-PDBBind training split"
+      },
+      "pdbbind2013": {
+        "n_test": 184,
+        "rmse_mean": 1.575119,
+        "rmse_std": 0.028516,
+        "mae_mean": 1.317637,
+        "pearson_mean": 0.723542,
+        "spearman_mean": 0.71184,
+        "seeds": 3,
+        "protocol": "retrained on the reconstructed PDBbind-2013 training split",
+        "coverage": "184/193 (common ids)"
+      }
+    }
+  }
+}
